@@ -4,54 +4,28 @@
 You have 60 minutes to clean catastrophic CSV data into tidy format while maintaining granular Git history. Then present your approach and results.
 :::
 
-## The Challenge
+This sprint challenges you to clean messy Data into tidy format while maintaining granular Git history. **Time Limit:** 60 minutes of work, followed by class presentations. 
 
-Transform the Gapminder World Data in your data folder into tidy format. The data has metadata mixed with observations, implicit missing values, and years spread across columns. Your task: clean it, visualize the mortality-GDP relationship, document your decisions, and make it reproducible.
+Repo: https://github.com/skojaku/applsoftcomp-sprint-m01
 
-Work through three phases, each in its own Git branch. After merging all branches, create a `run.sh` script that reproduces your entire pipeline.
+### Instructions
+**Phase 1: data-formatting**: Create a new branch from your master/main. Transform the messy CSV files in your data folder into tidy format. Save your cleaned files to `data/preprocessed`. Then merge the two datasets into a single table with columns `geo`, `name`, `mortality_rate`, `gdpcapita`, and `year` (geo must be the first column). Commit your work frequently with clear messages explaining your reasoning, and merge into master.
 
-## Three Phases
+**Phase 2: visualization**: Create a new branch from your updated master. Build a scatter plot showing child mortality rate (Y-axis) versus GDP per capita (X-axis), with colors indicating the year of each observation. Save your figure to `paper/figs`. Commit your visualization code and output, push to GitHub, and merge into master.
 
-### Phase 1: data-formatting
+**Phase 3: documentation**: Branch again from updated master/main. Write a document at `paper/NOTE.md` that explains your data cleaning strategy, visualization choices, and the key insights revealed by your analysis. This documentation should help future collaborators understand not just what you did, but why you made those choices. Commit, push to GitHub, and merge into master.
 
-- Create a branch called `data-formatting`
-- Transform each CSV into tidy format:
-  - One variable per column
-  - One observation per row
-  - No metadata in data cells
-  - Explicit missing values
-  - Clear column names
-- Save tidy files to `data/preprocessed`
-- Merge the two datasets into one table with columns: `geo`, `name`, `mortality_rate`, `gdpcapita`, `year` (geo must be first)
-- Commit, push, and merge into master
+**Phase 4: reproducibility**: After merging all three branches, create a shell script called `run.sh` in your project root. This script must execute your entire pipeline from raw data to final figure. Use `uv sync` to install dependencies and `uv run python <script>` to execute your workflow scripts. Test your script by deleting all generated files and running `bash run.sh` to verify it recreates everything. Commit this script to master.
 
-### Phase 2: visualization
+Submit the link to your GitHub repository on Brightspace. We will review your commit history across all branches and verify that your `run.sh` script successfully reproduces your analysis.
+#### Evaluation Criteria
 
-- Branch from updated master as `visualization`
-- Create a scatter plot:
-  - Y-axis: Mortality rate
-  - X-axis: GDP per capita
-  - Color: Year
-- Save to `paper/figs`
-- Commit, push, and merge into master
+- **Data Quality (20%):** Is your dataset immediately usable for analysis? Are data types correct and missing values explicit?
+- **Git History (20%):** Do your commits tell a coherent story with clear reasoning?
+- **Documentation (30%):** Can you clearly explain your cleaning strategy, visualization choices, and insights?
+- **Reproducibility (30%):** Does your `run.sh` script successfully recreate all results from scratch?
 
-### Phase 3: documentation
 
-- Branch from updated master as `documentation`
-- Write `paper/NOTE.md` explaining:
-  - Data cleaning strategy
-  - Visualization choices
-  - Key insights
-- Commit, push, and merge into master
-
-### Final: reproducibility
-
-- Create `run.sh` in project root
-- Script must reproduce entire pipeline from raw data to final figure
-- Use `uv sync` to install dependencies
-- Use `uv run python <script>` to execute workflow scripts
-- Test by deleting generated files and running `bash run.sh`
-- Commit to master
 
 ## Git Workflow
 
